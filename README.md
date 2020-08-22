@@ -28,7 +28,7 @@ An English word appearance stats collector. Text input format options: plain tex
     1. Client must declare content type with matching payload (Include header `Content-Type`)
         1. `Content-Type: text/plain` with matching string payload.
         2. `Content-Type: application/octet-stream` with matching uploaded-file payload. 
-        3. `Content-Type: application/json` with matching `{url: string}` payload.
+        3. `Content-Type: application/json` with matching `{url: string}` payload. Accepting only `text/plain` as the response media type from the remote.
         
 ## Notes
 * Word contractions count as a word (e.g. you're is different from you are).
