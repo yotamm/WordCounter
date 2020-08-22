@@ -10,7 +10,7 @@ class StatisticsManager {
         fs.readFile(fileName, (error, data) => {
             if (error) throw error;
             const stats = JSON.parse(data.toString());
-            this.dataTrie.setFullTree(stats);
+            this.dataTrie.setFullTrie(stats);
         });
     }
 
