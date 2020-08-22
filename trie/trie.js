@@ -1,6 +1,10 @@
-const TrieNode = require('./trie-node');
 const extractWords = require('get-words');
 const extractWordsOptions = {keepContraction: true, breakCompoundWord: true};
+
+class TrieNode {
+    next = {};
+    count = 0;
+}
 
 module.exports = class Trie {
     root = new TrieNode();
@@ -11,7 +15,7 @@ module.exports = class Trie {
                 return node.count;
             }
             const nextNode = node.next[word[index]];
-            return nextNode ? recursiveLookup(nextNode, index++) : null;
+            return nextNode ? recursiveLookup(nextNode, index++) : 0;
         };
 
         return this.isValidInput(word) ? recursiveLookup(this.root, -1) : null;
@@ -41,7 +45,9 @@ module.exports = class Trie {
         words.forEach(this.insertWord);
     };
 
-    isValidInput = (word) => word && typeof word === 'string' && word.length > 0;
+    setFullTree = (newRoot) => {this.root = newRoot};
+
+    isValidInput = (word) => (word && typeof word === 'string' && word.length > 0);
 
     toString = () => JSON.stringify(this.root);
 };
