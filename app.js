@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const wordStatsRouter = require('./routes/word-stats.route');
 
@@ -7,6 +8,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.text());
+app.use(bodyParser.raw());
+
 
 app.use('/word-stats', wordStatsRouter);
 
