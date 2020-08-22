@@ -8,10 +8,12 @@
     "discard": "node ./discardStatistics"
   },
   "dependencies": {
+    "binstring": "^0.2.1",
     "body-parser": "^1.19.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "get-words": "^0.1.3",
-    "http-errors": "~1.6.3"
+    "http-errors": "~1.6.3",
+    "url-parse": "^1.4.7"
   }
 }
