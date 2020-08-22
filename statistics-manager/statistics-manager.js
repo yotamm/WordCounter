@@ -16,7 +16,10 @@ class StatisticsManager {
 
     getWordStatistics = (word) => {
         const result = this.dataTrie.lookup(word);
-        return result === null ? throw new Error('Invalid Input') : {word: word, count: result};
+        if (result === null) {
+            throw new Error('Invalid Input');
+        }
+        return {word: word, count: result};
     }
 
     addToStatistics = (text) => {
