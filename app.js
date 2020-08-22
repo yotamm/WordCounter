@@ -1,14 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 
-var indexRouter = require('./routes/index');
+const wordStatsRouter = require('./routes/word-stats.route');
 
-var app = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter);
+app.use('/word-stats', wordStatsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
