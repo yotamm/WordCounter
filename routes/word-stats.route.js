@@ -37,7 +37,7 @@ router.post('/', async function (req, res) {
 
 router.get('/', function (req, res) {
     console.log('GET request received at /word-stats');
-    if (req.accepts('application/json')) {
+    if (!req.accepts('json')) {
         res.status(400).send();
     } else {
         try {
@@ -45,7 +45,7 @@ router.get('/', function (req, res) {
             res.status(200).send(result);
         } catch (error) {
             console.error(error.message);
-            res.status(400).send({error: error.message});
+            res.status(400).send();
         }
     }
 });

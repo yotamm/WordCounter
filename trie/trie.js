@@ -11,43 +11,53 @@ module.exports = class Trie {
 
     lookup = (word) => {
         const recursiveLookup = (node, index) => {
-            if (index === word.length - 1) {
+            if (index === normalizedWord.length - 1) {
                 return node.count;
             }
-            const nextNode = node.next[word[index]];
-            return nextNode ? recursiveLookup(nextNode, index++) : 0;
+            const nextNode = node.next[normalizedWord[index + 1]];
+            return nextNode ? recursiveLookup(nextNode, ++index) : 0;
         };
 
-        return this.isValidInput(word) ? recursiveLookup(this.root, -1) : null;
+        if (!this.isValidInput(word)) {
+            throw new Error('Illegal argument');
+        }
+        const normalizedWord = this.normalizeText(word);
+        return recursiveLookup(this.root, -1);
     }
 
     insertText = (text) => {
         const insertWord = (word) => {
             const recursiveInsert = (node, index) => {
-                if (index === word.length - 1) {
+                if (index === normalizedText.length - 1) {
                     node.count++;
                     return;
                 }
-                let nextNode = node.next[word[index]];
+                let nextNode = node.next[normalizedText[index + 1]];
                 if (!nextNode) {
-                    node.next[word[index]] = new TrieNode;
+                    node.next[normalizedText[index + 1]] = new TrieNode;
+                    nextNode = node.next[normalizedText[index + 1]];
                 }
-                nextNode = node.next[word[index]];
-                recursiveInsert(nextNode, index++);
+                recursiveInsert(nextNode, ++index);
             };
 
-            if (this.isValidInput(word)) {
-                recursiveInsert(this.root, -1);
+            if (!this.isValidInput(word)) {
+                throw new Error('Illegal argument');
             }
+            const normalizedText = this.normalizeText(text);
+            recursiveInsert(this.root, -1);
         };
 
         const words = extractWords(text, extractWordsOptions);
         words.forEach(insertWord);
     };
 
-    setFullTree = (newRoot) => {this.root = newRoot};
+    normalizeText = (text) => text.toLowerCase();
+
+    setFullTree = (newRoot) => {
+        this.root = newRoot
+    };
 
     isValidInput = (word) => (word && typeof word === 'string' && word.length > 0);
 
-    toString = () => JSON.stringify(this.root);
+    toJson = () => JSON.stringify(this.root);
 };

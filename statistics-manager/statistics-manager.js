@@ -1,6 +1,6 @@
 const Trie = require('../trie/trie');
 const fs = require('fs');
-const fileName = 'statistics.json';
+const fileName = './statistics-manager/statistics.json';
 
 
 class StatisticsManager {
@@ -16,9 +16,6 @@ class StatisticsManager {
 
     getWordStatistics = (word) => {
         const result = this.dataTrie.lookup(word);
-        if (result === null) {
-            throw new Error('Invalid Input');
-        }
         return {word: word, count: result};
     }
 
@@ -28,7 +25,7 @@ class StatisticsManager {
     }
 
     persistStatistics = () => {
-        const rawData = this.dataTrie.toString();
+        const rawData = this.dataTrie.toJson();
         fs.writeFile(fileName, rawData, (error) => {
             if (error) throw error;
         });
