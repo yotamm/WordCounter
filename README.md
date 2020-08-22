@@ -31,5 +31,6 @@ An English word appearance stats collector. Text input format options: plain tex
         3. `Content-Type: application/json` with matching `{url: string}` payload.
         
 ## Notes
-* Word contractions count as a word (e.g. you're is different from you are)
+* Word contractions count as a word (e.g. you're is different from you are).
+* I have added unit tests for the Trie module and the Statistics Manager module.
 

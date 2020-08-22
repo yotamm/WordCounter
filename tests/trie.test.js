@@ -35,3 +35,9 @@ test('when inserting word _ then prefix does not count', () => {
     expect(trie.lookup('te')).toEqual(0);
     expect(trie.lookup('tes')).toEqual(0);
 });
+
+test('when looking for content that doesnt exist _ then not found', () => {
+   const trie = new Trie();
+   trie.setFullTrie(JSON.parse(trieJSON));
+   expect(trie.lookup('word')).toEqual(0);
+});

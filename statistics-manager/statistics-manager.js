@@ -1,6 +1,7 @@
 const Trie = require('../trie/trie');
 const fs = require('fs');
-const fileName = './statistics-manager/statistics.json';
+const environment = JSON.parse(fs.readFileSync('../environment.json', 'utf8'));
+const fileName = environment['statistics_file_path'];
 
 
 class StatisticsManager {
