@@ -43,7 +43,7 @@ module.exports = class Trie {
             if (!this.isValidInput(word)) {
                 throw new Error('Illegal argument');
             }
-            const normalizedText = this.normalizeText(text);
+            const normalizedText = this.normalizeText(word);
             recursiveInsert(this.root, -1);
         };
 
@@ -53,7 +53,7 @@ module.exports = class Trie {
 
     normalizeText = (text) => text.toLowerCase();
 
-    setFullTree = (newRoot) => {
+    setFullTrie = (newRoot) => {
         this.root = newRoot
     };
 
