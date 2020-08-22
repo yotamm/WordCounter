@@ -33,4 +33,5 @@ An English word appearance stats collector. Text input format options: plain tex
 ## Notes
 * Word contractions count as a word (e.g. you're is different from you are).
 * I have added unit tests for the Trie module and the Statistics Manager module.
+* Assuming you have nodeJS and npm installed (I used v12.18.3).
 
